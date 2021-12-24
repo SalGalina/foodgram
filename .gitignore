@@ -102,6 +102,9 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+.direnv
+.envrc
+ll.env
 .env
 .venv
 env/
@@ -109,6 +112,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.git
 
 # Spyder project settings
 .spyderproject
@@ -128,5 +132,26 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# .idea
+# Папки, создаваемые средой разработки
 .idea
+.DS_Store
+.AppleDouble
+.LSOverride
+
+*.sublime-project
+*.sublime-workspace
+
+.vscode/
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+.mypy_cache
+
+# папки со статикой и медиа
+static/
+media/
+data/
+requests.http
+*.drawio
