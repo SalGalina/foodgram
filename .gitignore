@@ -152,6 +152,3 @@ dmypy.json
 # папки со статикой и медиа
 static/
 media/
-data/
-requests.http
-*.drawio

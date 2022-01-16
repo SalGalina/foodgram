@@ -1,9 +1,9 @@
 # Дипломный проект foodgram
 ![FoodGram CI & CD](https://github.com/SalGalina/foodgram-project-react/workflows/foodgram-workflow.yml/badge.svg)
 
-**FoodGram**: [API](http://www.gals.ml/api/v1/),
+**FoodGram**: [API](http://www.gals.ml/api/),
 [Админка](http://www.gals.ml/admin/),
-[Документация](http://www.gals.ml/redoc/).
+[Документация](http://www.gals.ml/api/docs/).
 
 ## Продуктовый менеджер
 
@@ -20,7 +20,7 @@
 - Python 3.7-slim
 - Django 2.2.6
 - Django REST Framework 3.12.4
-- Django REST Framework SimpleJWT 4.7.2 + Djoser==2.1.0
+- Djoser==2.1.0
 - Gunicorn 20.1.0
 - Nginx 1.21.3-alpine
 - PostgreSQL 13.0-alpine
@@ -62,14 +62,15 @@ sudo apt install docker-ce docker-compose -y
 
 ```bash
 #!/bin/bash
-git clone git@github.com:SalGalina/yamdb_final.git
+git clone git@github.com:SalGalina/foodgram-project-react.git
 ```
 
 - Скачайте образ проекта с DockerHub
 
 ```bash
 #!/bin/bash
-sudo docker pull salgalina/yamdb_final:latest
+sudo docker pull salgalina/foodgram_frontend:latest
+sudo docker pull salgalina/foodgram_backend:latest
 ```
 
 - Настройте переменные окружения в .env файле и на GitHub Actions
@@ -81,40 +82,16 @@ sudo docker pull salgalina/yamdb_final:latest
 ```bash
 #!/bin/bash
 sudo docker-compose up -d --build
+sudo docker-compose exec backend python manage.py migrate
+sudo docker-compose exec backend python manage.py createsuperuser
+sudo docker-compose exec backend python manage.py collectstatic --no-input
 ```
 
-- Запустите миграции:
+- Загрузите ингредиенты и тэги в базу при необходимости:
 
 ```bash
 #!/bin/bash
-sudo docker-compose exec web python manage.py migrate
-```
-
-- Создайте суперпользователя:
-
-```bash
-#!/bin/bash
-sudo docker-compose exec web python manage.py createsuperuser
-```
-
-- Соберите статику:
-
-```bash
-#!/bin/bash
-sudo docker-compose exec web python manage.py collectstatic --no-input
-```
-
-- Загрузите данные в базу при необходимости:
-
-```bash
-#!/bin/bash
-scp fixtures.json <username>@<domain_name or IP>:<home_dir>
-sudo docker cp fixtures.json <container_name or container_id>:<path_to_workdir>
-sudo docker-compose exec web python manage.py shell
->>> from django.contrib.contenttypes.models import ContentType
->>> ContentType.objects.all().delete()
->>> quit()
-sudo docker-compose exec web python manage.py loaddata fixtures.json
+sudo docker-compose exec backend python manage.py import_csv -dd data/
 ```
 
 ### Авторы
