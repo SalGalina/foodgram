@@ -4,10 +4,6 @@ from rest_framework.filters import SearchFilter
 from .models import Recipe, Favorite
 
 
-class TagsAllValuesMultipleFilter(filters.AllValuesMultipleFilter):
-    always_filter = False
-
-
 class IngredientSearchFilter(SearchFilter):
     """Фильтрация Продуктов по Названию"""
     search_param = 'name'
@@ -21,9 +17,9 @@ class RecipeFilter(FilterSet):
     is_in_shopping_cart = filters.BooleanFilter(
         method='filter_is_in_shopping_card'
     )
-    tags = TagsAllValuesMultipleFilter(
+    tags = filters.AllValuesMultipleFilter(
         field_name='tags__slug',
-        lookup_expr='icontains'
+        lookup_expr='iexact'
     )
 
     def filter_is_favorited(self, queryset, field_name, value):

@@ -1,10 +1,10 @@
-from recipes.models import Recipe
-from .models import Subscribe
 from djoser.serializers import UserCreateSerializer, UserSerializer
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator, UniqueValidator
 
+from .models import Subscribe
+from recipes.models import Recipe
 
 User = get_user_model()
 

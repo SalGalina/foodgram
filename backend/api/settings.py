@@ -14,9 +14,6 @@ DEBUG = os.getenv('DEBUG', default=True)
 
 ALLOWED_HOSTS = ['*']
 
-
-# Application definition
-
 INSTALLED_APPS = [
     'users',
     'django.contrib.admin',
@@ -66,23 +63,16 @@ WSGI_APPLICATION = 'api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': os.getenv(
+            'DB_ENGINE', default='django.db.backends.postgresql'),
+        'NAME': os.getenv(
+            'POSTGRES_DB', default='foodgram_db'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT')
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': os.getenv(
-#             'DB_ENGINE', default='django.db.backends.postgresql'),
-#         'NAME': os.getenv(
-#             'POSTGRES_DB', default='foodgram_db'),
-#         'USER': os.getenv('POSTGRES_USER'),
-#         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-#         'HOST': os.getenv('DB_HOST'),
-#         'PORT': os.getenv('DB_PORT')
-#     }
-# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {

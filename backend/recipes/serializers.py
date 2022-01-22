@@ -125,6 +125,35 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             context={'request': self.context.get('request')}
         ).data
 
+    def AllListValuesIsUnique(self, datalist):
+        return len(datalist) == len(set(datalist))
+
+    def validate_cooking_time(self, value):
+        if value < 1:
+            raise serializers.ValidationError(
+                'Время приготовления не может быть меньше 1')
+        return value
+
+    def validate(self, data):
+        ingredients = data.get('ingredients')
+        ingredients_ids = [0]*len(ingredients)
+        for num, ingredient in enumerate(ingredients):
+            ingredients_ids[num] = ingredient.get('id')
+            if ingredient.get('amount') < 1:
+                raise serializers.ValidationError(
+                    'Количество не может быть меньше 1.')
+
+        if not self.AllListValuesIsUnique(ingredients_ids):
+            raise serializers.ValidationError(
+                'Продукты не должны повторяться.')
+
+        tags = data.get('tags')
+        if not self.AllListValuesIsUnique(tags):
+            raise serializers.ValidationError(
+                'Тэги не должны повторяться.')
+
+        return data
+
     def add_tags(self, tags, recipe):
         for tag in tags:
             recipe.tags.add(tag)
@@ -146,16 +175,12 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
         return recipe
 
     def update(self, obj, validated_data):
-        obj.image = validated_data.get('image', obj.image)
-        obj.name = validated_data.get('name', obj.name)
-        obj.text = validated_data.get('text', obj.text)
-        obj.cooking_time = validated_data.get(
-            'cooking_time', obj.cooking_time)
+        tags = validated_data.pop('tags')
+        ingredients = validated_data.pop('ingredients')
+        super().update(obj, validated_data)
         obj.tags.clear()
-        tags = validated_data.get('tags')
         self.add_tags(tags, obj)
         RecipeIngredient.objects.filter(recipe=obj).all().delete()
-        ingredients = validated_data.get('ingredients')
         self.add_ingredients(ingredients, obj)
         obj.save()
 
