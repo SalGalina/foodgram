@@ -143,6 +143,12 @@ class RecipeIngredient(models.Model):
         verbose_name = 'Продукты для Рецепта'
         verbose_name_plural = 'Продукты для Рецептов'
         ordering = ['ingredient__name']
+        constraints = [
+            models.UniqueConstraint(
+                fields=['recipe', 'ingredient'],
+                name='unique_recipe_ingredient'
+            )
+        ]
 
     def __str__(self):
         return f'{self.ingredient.name} {self.amount} {self.recipe.name}'
@@ -165,6 +171,12 @@ class RecipeTag(models.Model):
         verbose_name = 'Тэги для Рецепта'
         verbose_name_plural = 'Тэги для Рецептов'
         ordering = ['ingredient__name']
+        constraints = [
+            models.UniqueConstraint(
+                fields=['recipe', 'tag'],
+                name='unique_recipe_tag'
+            )
+        ]
 
     def __str__(self):
         return f'{self.recipe} {self.tag}'
