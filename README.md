@@ -1,5 +1,6 @@
 # Дипломный проект foodgram
-![FoodGram CI & CD](https://github.com/SalGalina/foodgram-project-react/workflows/foodgram-workflow.yml/badge.svg)
+
+![foodgram-workflow](https://github.com/SalGalina/foodgram-project-react/workflows/foodgram-workflow.yml/badge.svg)
 
 **FoodGram**: [API](http://www.gals.ml/api/),
 [Админка](http://www.gals.ml/admin/),
