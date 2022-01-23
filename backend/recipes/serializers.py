@@ -125,8 +125,8 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             context={'request': self.context.get('request')}
         ).data
 
-    def AllListValuesIsUnique(self, datalist):
-        return len(datalist) == len(set(datalist))
+    def all_list_values_is_unique(self, data_list):
+        return len(data_list) == len(set(data_list))
 
     def validate_cooking_time(self, value):
         if value < 1:
@@ -143,12 +143,12 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError(
                     'Количество не может быть меньше 1.')
 
-        if not self.AllListValuesIsUnique(ingredients_ids):
+        if not self.all_list_values_is_unique(ingredients_ids):
             raise serializers.ValidationError(
                 'Продукты не должны повторяться.')
 
         tags = data.get('tags')
-        if not self.AllListValuesIsUnique(tags):
+        if not self.all_list_values_is_unique(tags):
             raise serializers.ValidationError(
                 'Тэги не должны повторяться.')
 
