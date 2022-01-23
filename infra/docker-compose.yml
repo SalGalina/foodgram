@@ -8,9 +8,7 @@ services:
       - .env
 
   backend:
-    build:
-      context: ../backend
-      dockerfile: Dockerfile
+    image: salgalina/foodgram_backend:latest
     restart: always
     volumes:
       - ../data/:/backend/data/
