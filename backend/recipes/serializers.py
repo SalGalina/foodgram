@@ -2,10 +2,10 @@ from django.contrib.auth import get_user_model
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
-from .models import (
-    Ingredient, Recipe, RecipeIngredient, Tag,
-    Favorite, Shopping)
 from users.serializers import ProfileSerializer
+
+from .models import (Favorite, Ingredient, Recipe, RecipeIngredient, Shopping,
+                     Tag)
 
 User = get_user_model()
 
@@ -136,7 +136,7 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         ingredients = data.get('ingredients')
-        ingredients_ids = [0]*len(ingredients)
+        ingredients_ids = [0] * len(ingredients)
         for num, ingredient in enumerate(ingredients):
             ingredients_ids[num] = ingredient.get('id')
             if ingredient.get('amount') < 1:

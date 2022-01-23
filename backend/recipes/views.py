@@ -1,26 +1,24 @@
-import io
 import csv
+import io
+
 from django.contrib.auth import get_user_model
-from django.db.models import Sum, Prefetch
+from django.db.models import Prefetch, Sum
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from users.permissions import IsAuthorOrAdminOrReadOnly
+
 from .filters import IngredientSearchFilter, RecipeFilter
-from .mixins import ListRetrieveModelViewSet, LikeRecipeMixin
-from .models import (
-    Ingredient, Tag, Recipe, RecipeIngredient, Favorite, Shopping)
-from .serializers import (
-    IngredientSerializer,
-    RecipeSerializer, RecipeCreateSerializer,
-    TagSerializer,
-    FavoriteSerializer,
-    ShoppingSerializer
-)
+from .mixins import LikeRecipeMixin, ListRetrieveModelViewSet
+from .models import (Favorite, Ingredient, Recipe, RecipeIngredient, Shopping,
+                     Tag)
 from .paginations import RecipesPageNumberPagination
-from users.permissions import (IsAuthorOrAdminOrReadOnly)
+from .serializers import (FavoriteSerializer, IngredientSerializer,
+                          RecipeCreateSerializer, RecipeSerializer,
+                          ShoppingSerializer, TagSerializer)
 
 User = get_user_model()
 
@@ -94,7 +92,7 @@ class RecipeViewSet(LikeRecipeMixin, viewsets.ModelViewSet):
             ])
             csv_writer.writerow(['-', '-', '-', '-', '-'])
             for num, ingredient in enumerate(ingredients, start=1):
-                prod = ingredient['ingredient__name']+': '
+                prod = ingredient['ingredient__name'] + ': '
                 amount = ingredient['sum_amount']
                 unit = ingredient['ingredient__measurement_unit']
                 csv_writer.writerow([num, '. ', prod, amount, unit])

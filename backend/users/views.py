@@ -6,9 +6,10 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Subscribe
-from .serializers import SubscribeSerializer, SubscribeListSerializer
 from recipes.paginations import RecipesPageNumberPagination
+
+from .models import Subscribe
+from .serializers import SubscribeListSerializer, SubscribeSerializer
 
 User = get_user_model()
 

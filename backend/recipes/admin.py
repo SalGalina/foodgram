@@ -1,8 +1,8 @@
 from django import forms
 from django.contrib import admin
 
-from .models import Ingredient, Recipe, RecipeIngredient, RecipeTag, Tag
 from .fields import ColorField
+from .models import Ingredient, Recipe, RecipeIngredient, RecipeTag, Tag
 
 
 @admin.register(Ingredient)
