@@ -1,6 +1,6 @@
 from django.urls import include, path
 
-from .views import SubscribeView, SubscribeListView
+from .views import SubscribeListView, SubscribeView
 
 app_name = 'users'
 
