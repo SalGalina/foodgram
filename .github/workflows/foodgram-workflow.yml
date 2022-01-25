@@ -4,6 +4,7 @@ name: foodgram_workflow
 on:
   push:
     branches:
+      - '*'
       - '!master'
 
 jobs:
