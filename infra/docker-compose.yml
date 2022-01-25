@@ -11,7 +11,7 @@ services:
     image: salgalina/foodgram_backend:latest
     restart: always
     volumes:
-      - /foodgram-project-react/data/:/backend/data/
+      - ../data/:/backend/data/
       - static_value:/backend/static/
       - media_value:/backend/media/
     depends_on:
@@ -22,7 +22,7 @@ services:
   frontend:
     image: salgalina/foodgram_frontend:latest
     volumes:
-      - /foodgram-project-react/frontend/:/app/result_build/
+      - ../frontend/:/app/result_build/
   nginx:
     image: nginx:1.19.3
     ports:

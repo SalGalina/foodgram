@@ -1,7 +1,10 @@
 # .github/workflows/**foodgram_workflow.yml**
 name: foodgram_workflow
 
-on: [push]
+on:
+  push:
+    branches:
+      - '!master'
 
 jobs:
   tests:
