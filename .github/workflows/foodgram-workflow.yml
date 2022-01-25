@@ -69,7 +69,7 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             sudo docker-compose stop
-            sudo docker-compose rm web
+            sudo docker-compose rm backend frontend
             sudo docker pull salgalina/foodgram_backend:latest
             sudo docker pull salgalina/foodgram_frontend:latest
             touch .env
