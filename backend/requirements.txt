@@ -11,3 +11,4 @@ isort==5.10.1
 Pillow==8.4.0
 psycopg2-binary==2.8.6
 pytils==0.3
+wheel==0.37.1
