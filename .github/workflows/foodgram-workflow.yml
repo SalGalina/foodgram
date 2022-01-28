@@ -64,7 +64,6 @@ jobs:
           script: |
             sudo docker-compose stop
             sudo docker-compose rm backend frontend
-            sudo git clone git@github.com:SalGalina/foodgram.git
             sudo docker pull salgalina/foodgram_backend:latest
             sudo docker pull salgalina/foodgram_frontend:latest
             cd foodgram/infra/

@@ -76,7 +76,7 @@ sudo docker pull salgalina/foodgram_backend:latest
 
 - Настройте переменные окружения в .env файле и на GitHub Actions
 
-- измените IP-адрес и доменные имена в infra/nginx/default.conf
+- измените IP-адрес и доменные имена в infra/nginx.conf
 
 - Локальный запуск приложения:
 
