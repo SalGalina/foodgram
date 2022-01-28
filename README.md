@@ -63,7 +63,7 @@ sudo apt install docker-ce docker-compose -y
 
 ```bash
 #!/bin/bash
-git clone git@github.com:SalGalina/foodgram-project-react.git
+git clone git@github.com:SalGalina/foodgram.git
 ```
 
 - Скачайте образ проекта с DockerHub
