@@ -9,9 +9,6 @@ services:
 
   frontend:
     image: salgalina/foodgram_frontend:latest
-#    build: # локальный запуск
-#      context: ../frontend
-#      dockerfile: Dockerfile
     volumes:
       - ../frontend/:/app/result_build/
 
