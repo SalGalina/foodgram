@@ -62,7 +62,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            cd foodgram/infra/
             sudo docker-compose stop
             sudo docker-compose rm backend frontend
             sudo docker pull salgalina/foodgram_backend:latest
