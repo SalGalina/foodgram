@@ -170,7 +170,7 @@ class RecipeTag(models.Model):
     class Meta:
         verbose_name = 'Тэги для Рецепта'
         verbose_name_plural = 'Тэги для Рецептов'
-        ordering = ['ingredient__name']
+        ordering = ['id']
         constraints = [
             models.UniqueConstraint(
                 fields=['recipe', 'tag'],
