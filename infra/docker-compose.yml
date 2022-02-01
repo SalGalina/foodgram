@@ -17,7 +17,7 @@ services:
     restart: always
     volumes:
       - ../data/:/backend/data/
-      - ../static/:/backend/static/
+      - ../static:/backend/static/
       - ../media/:/backend/media/
     depends_on:
       - db
@@ -33,13 +33,13 @@ services:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ../frontend/build:/usr/share/nginx/html/
       - ../docs/:/usr/share/nginx/html/api/docs/
-      - ../static/:/var/html/static/
+      - ../static:/var/html/static/
       - ../media/:/var/html/media/
     depends_on:
       - backend
       - frontend
 
-volumes:
-  # static_value:
-  # media_value:
-  postgres_data:
+# volumes:
+#   static_value:
+#   media_value:
+#   postgres_data:
