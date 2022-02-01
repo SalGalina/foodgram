@@ -18,7 +18,7 @@ services:
     volumes:
       - ../data/:/backend/data/
       - ../static:/backend/static/
-      - ../media/:/backend/media/
+      - media_value:/backend/media/
     depends_on:
       - db
     env_file:
@@ -34,12 +34,12 @@ services:
       - ../frontend/build:/usr/share/nginx/html/
       - ../docs/:/usr/share/nginx/html/api/docs/
       - ../static:/var/html/static/
-      - ../media/:/var/html/media/
+      - media_value:/var/html/media/
     depends_on:
       - backend
       - frontend
 
-# volumes:
-#   static_value:
-#   media_value:
-#   postgres_data:
+volumes:
+  static_value:
+  media_value:
+  postgres_data:
