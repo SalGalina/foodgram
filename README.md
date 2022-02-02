@@ -2,9 +2,9 @@
 
 ![FoodGram CI & CD](https://github.com/SalGalina/foodgram-project-react/workflows/foodgram_workflow/badge.svg)
 
-**FoodGram**: [API](http://www.gals.ml/api/),
-[Админка](http://www.gals.ml/admin/),
-[Документация](http://www.gals.ml/api/docs/).
+**FoodGram**: [API](http://gals.myddns.me/api/),
+[Админка](http://gals.myddns.me/admin/),
+[Документация](http://gals.myddns.me/api/docs/).
 
 ## Продуктовый менеджер
 
