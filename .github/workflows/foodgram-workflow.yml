@@ -69,7 +69,6 @@ jobs:
             sudo docker pull salgalina/foodgram_frontend:latest
             touch .env
             echo DEBUG=False >> .env
-            echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
             echo ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }} >> .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
             echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env
