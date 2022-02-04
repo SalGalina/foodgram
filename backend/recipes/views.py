@@ -83,7 +83,6 @@ class RecipeViewSet(LikeRecipeMixin, viewsets.ModelViewSet):
         ).annotate(
             sum_amount=Sum('amount')
         ))
-        print(ingredients)
         with io.StringIO() as out:
             csv_writer = csv.writer(
                 out, delimiter=',', lineterminator='\n',
@@ -98,6 +97,9 @@ class RecipeViewSet(LikeRecipeMixin, viewsets.ModelViewSet):
                 unit = ingredient['ingredient__measurement_unit']
                 csv_writer.writerow([num, '. ', prod, amount, unit])
             contents = out.getvalue()
-        response = Response(contents, content_type='text/csv')
+        response = Response(contents,
+                            content_type='text/csv',
+                            status=status.HTTP_200_OK)
         response['Content-Disposition'] = 'attachment; filename="shopping.csv"'
-        return Response(status=status.HTTP_200_OK)
+
+        return response
