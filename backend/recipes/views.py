@@ -83,9 +83,10 @@ class RecipeViewSet(LikeRecipeMixin, viewsets.ModelViewSet):
         ).annotate(
             sum_amount=Sum('amount')
         ))
+        print(ingredients)
         with io.StringIO() as out:
             csv_writer = csv.writer(
-                out, delimiter=',', lineterminator=';',
+                out, delimiter=',', lineterminator='\n',
                 quoting=csv.QUOTE_NONNUMERIC)
             csv_writer.writerow([
                 ' ', ' ', 'СПИСОК ПРОДУКТОВ для ', 'выбранных ', 'рецептов:'
